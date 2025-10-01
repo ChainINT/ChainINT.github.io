@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chain Intelligence Pte. Ltd. — Privacy‑First Blockchain & AI</title>
+  <meta name="description" content="Chain Intelligence Pte. Ltd. is a Singapore-based firm building privacy-first blockchain and AI systems using homomorphic encryption, secure MPC, and policy-aware smart contracts." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Antonio:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070710; --bg2:#0b0b1a; --accent:#7a5cff; --accent-2:#07f2c2; --ink:#e9ecf8; --muted:#a6b0d1; --glass:rgba(255,255,255,.06);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:radial-gradient(1200px 800px at 70% -10%, rgba(122,92,255,.25), transparent 60%),
+                         radial-gradient(900px 700px at -10% 20%, rgba(7,242,194,.15), transparent 60%),
+                         linear-gradient(180deg, var(--bg), var(--bg2));
+         color:var(--ink); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";}
+    a{color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* ====== Header ====== */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(7,7,16,.85), rgba(7,7,16,.35));backdrop-filter:saturate(140%) blur(12px);}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:.5px}
+    .logo{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 210deg, var(--accent), var(--accent-2)); position:relative; box-shadow:0 10px 30px rgba(122,92,255,.35), 0 6px 18px rgba(7,242,194,.15)}
+    .logo::after{content:"";position:absolute;inset:4px;border-radius:10px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 45%), linear-gradient(135deg, rgba(255,255,255,.25), rgba(255,255,255,.03))}
+    .nav a.btn{padding:10px 16px;border-radius:12px;background:linear-gradient(135deg, var(--accent), var(--accent-2)); font-weight:700; text-decoration:none; box-shadow:0 10px 22px rgba(122,92,255,.35);}
+
+    /* ====== Hero ====== */
+    .hero{position:relative;overflow:hidden}
+    .hero .container{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:80px 24px}
+    .headline{font-family:Antonio, Inter, system-ui; font-weight:800; line-height:1.04; font-size: clamp(36px, 6vw, 72px); letter-spacing:.5px;}
+    .sub{color:var(--muted); font-size: clamp(16px, 2.2vw, 20px); margin-top:14px}
+    .cta{margin-top:28px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{cursor:pointer;border:none}
+    .btn.primary{padding:14px 18px;border-radius:16px;background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#020205; font-weight:900; letter-spacing:.2px; box-shadow:0 16px 40px rgba(122,92,255,.35), inset 0 2px 0 rgba(255,255,255,.35)}
+    .btn.ghost{padding:14px 18px;border-radius:16px;background:var(--glass); color:var(--ink); font-weight:700; border:1px solid rgba(255,255,255,.12)}
+
+    /* Fancy 3D card */
+    .viz{position:relative; isolation:isolate}
+    .chip{position:relative; border-radius:var(--radius); padding:22px; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); box-shadow:0 30px 60px rgba(0,0,0,.35); transform:perspective(900px) rotateX(8deg) rotateY(-8deg);}
+    .chip::before{content:""; position:absolute; inset:-1px; border-radius:inherit; background:linear-gradient(135deg, rgba(122,92,255,.45), rgba(7,242,194,.35)); filter:blur(18px); opacity:.35; z-index:-1}
+    .chip-grid{display:grid; grid-template-columns:repeat(6, 1fr); gap:10px; margin-top:10px}
+    .cell{aspect-ratio:1/1; border-radius:10px; background:radial-gradient(120px 120px at 30% 25%, rgba(255,255,255,.12), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); position:relative; overflow:hidden}
+    .cell .pulse{position:absolute; inset:0; background:radial-gradient(220px 220px at var(--x,50%) var(--y,50%), rgba(122,92,255,.35), transparent 40%)}
+    .badge-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .badge{padding:8px 12px; border-radius:999px; background:rgba(7,242,194,.12); color:#b9ffef; border:1px solid rgba(7,242,194,.25); font-weight:700; font-size:13px}
+    .badge.alt{background:rgba(122,92,255,.12); color:#e7deff; border-color:rgba(122,92,255,.25)}
+
+    /* ====== Feature Cards ====== */
+    .section{padding:72px 0}
+    .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:22px}
+    .card{grid-column:span 4; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:22px; padding:20px; position:relative; overflow:hidden}
+    .card h3{margin:10px 0 8px 0; font-size:20px}
+    .card p{color:var(--muted); margin:0}
+    .card .corner{position:absolute; right:-40px; top:-40px; width:140px; height:140px; background:radial-gradient(80px 80px at 55% 55%, rgba(7,242,194,.25), transparent 50%)}
+    .card svg{width:32px;height:32px;opacity:.9}
+
+    /* ====== Marquee ====== */
+    .marquee{overflow:hidden; border:1px solid rgba(255,255,255,.08); border-radius:16px; background:rgba(255,255,255,.03)}
+    .marquee-track{display:flex; gap:48px; padding:18px 0; animation:scroll 28s linear infinite}
+    @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+    .pill{padding:10px 16px; border:1px dashed rgba(255,255,255,.18); border-radius:999px; color:var(--muted); font-weight:600; white-space:nowrap}
+
+    /* ====== Showcase ====== */
+    .showcase{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; align-items:stretch}
+    .img-card{border-radius:22px; overflow:hidden; border:1px solid rgba(255,255,255,.12); position:relative}
+    .img-card img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.15) contrast(1.05)}
+    .caption{position:absolute; left:16px; bottom:16px; background:rgba(0,0,0,.35); padding:10px 12px; border-radius:12px; font-weight:700; backdrop-filter: blur(6px)}
+
+    /* ====== CTA ====== */
+    .cta-block{display:flex; gap:22px; flex-wrap:wrap; align-items:center; justify-content:space-between; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); padding:24px; border-radius:22px}
+    .cta-text{max-width:720px}
+
+    /* ====== Footer ====== */
+    footer{padding:40px 0; color:#9aa5c8}
+    .small{font-size:13px}
+
+    /* ====== Responsive ====== */
+    @media (max-width: 980px){
+      .hero .container{grid-template-columns:1fr; padding-top:48px}
+      .showcase{grid-template-columns:1fr}
+      .card{grid-column:span 12}
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative stars -->
+  <canvas id="stars" style="position:fixed;inset:0;z-index:-1;opacity:.6"></canvas>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px;color:#9aa5c8;letter-spacing:.15em">SINGAPORE</div>
+          <div style="font-size:18px">Chain Intelligence Pte. Ltd.</div>
+        </div>
+      </div>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div>
+          <h1 class="headline">Privacy‑First Blockchain & AI<br>for Digital Trust</h1>
+          <p class="sub">Chain Intelligence Pte. Ltd. is a Singapore‑based firm building privacy‑first blockchain and AI systems. We enable digital trust with <strong>homomorphic encryption (HE)</strong>, <strong>secure multi‑party computation (MPC)</strong>, and <strong>policy‑aware smart contracts</strong>. Our platforms protect sensitive data while powering identity, analytics, and payment automation for regulated enterprises.</p>
+          <div class="badge-row">
+            <span class="badge">Homomorphic Encryption</span>
+            <span class="badge alt">Secure MPC</span>
+            <span class="badge">Policy‑Aware Contracts</span>
+            <span class="badge alt">Federated Analytics</span>
+            <span class="badge">Digital Identity DID/VC</span>
+          </div>
+          <div class="cta">
+            <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request a demo</button>
+            <a class="btn ghost" href="#features">Explore the stack</a>
+          </div>
+        </div>
+        <div class="viz">
+          <div class="chip">
+            <div style="display:flex;align-items:center;gap:12px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 7h10v10H7z"/><path d="M4 10h3v4H4zM17 10h3v4h-3zM10 4h4v3h-4zM10 17h4v3h-4z"/></svg>
+              <div style="font-weight:800">Confidential Compute Mesh</div>
+            </div>
+            <div class="chip-grid" id="grid"></div>
+            <div class="badge-row" style="margin-top:18px">
+              <span class="badge">HE pipelines</span>
+              <span class="badge alt">MPC orchestration</span>
+              <span class="badge">On‑chain policies</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section container">
+      <div class="grid">
+        <article class="card">
+          <div class="corner"></div>
+          <svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-7 10-7 10S5 17 5 12V6l7-4z" fill="currentColor"/></svg>
+          <h3>Homomorphic Encryption</h3>
+          <p>Run analytics on encrypted data to keep raw information sealed while extracting value. Compatible with HE friendly feature pipelines and batched computation.</p>
+        </article>
+        <article class="card">
+          <div class="corner"></div>
+          <svg viewBox="0 0 24 24"><path d="M4 7l8-4 8 4-8 4-8-4zm0 5l8 4 8-4" fill="currentColor"/></svg>
+          <h3>Secure MPC</h3>
+          <p>Collaborate across organizations without exposing inputs. Our MPC layer supports threshold policies, audited key ceremonies, and high‑throughput aggregation.</p>
+        </article>
+        <article class="card">
+          <div class="corner"></div>
+          <svg viewBox="0 0 24 24"><path d="M5 5h14v4H5zM5 10h9v4H5zM5 15h14v4H5z" fill="currentColor"/></svg>
+          <h3>Policy‑Aware Contracts</h3>
+          <p>Enforce governance and compliance at the protocol layer. Encode policies for identity, consent, and settlement with attestations and verifiable logs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="marquee" aria-label="Capabilities">
+        <div class="marquee-track">
+          <div class="pill">DID and Verifiable Credentials</div>
+          <div class="pill">Federated Learning</div>
+          <div class="pill">TEE Optionality</div>
+          <div class="pill">Cross‑border Compliance</div>
+          <div class="pill">Payments Automation</div>
+          <div class="pill">Zero Knowledge Readiness</div>
+          <!-- repeat for seamless loop -->
+          <div class="pill">DID and Verifiable Credentials</div>
+          <div class="pill">Federated Learning</div>
+          <div class="pill">TEE Optionality</div>
+          <div class="pill">Cross‑border Compliance</div>
+          <div class="pill">Payments Automation</div>
+          <div class="pill">Zero Knowledge Readiness</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section showcase">
+      <figure class="img-card">
+        <img alt="Encrypted analytics visualization" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1400&auto=format&fit=crop" />
+        <figcaption class="caption">Encrypted analytics • HE pipelines</figcaption>
+      </figure>
+      <figure class="img-card">
+        <img alt="Abstract smart contract and identity" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1400&auto=format&fit=crop" />
+        <figcaption class="caption">Policy‑aware contracts • Digital identity</figcaption>
+      </figure>
+    </section>
+
+    <section class="container section">
+      <div class="cta-block">
+        <div class="cta-text">
+          <h2 style="margin:0 0 6px 0; font-size:28px">Ready to collaborate securely?</h2>
+          <p style="margin:0; color:var(--muted)">Unlock privacy‑preserving identity, analytics, and payment automation without exposing raw data. We partner with regulated enterprises to meet audit and governance requirements.</p>
+        </div>
+        <div style="display:flex; gap:12px">
+          <a class="btn primary" href="#contact">Talk to us</a>
+          <a class="btn ghost" href="#stack">Download one‑pager</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container section" aria-labelledby="contact-head">
+      <h2 id="contact-head" style="margin:0 0 16px 0">Contact</h2>
+      <div class="grid">
+        <div class="card" style="grid-column:span 7">
+          <h3 style="margin:4px 0 8px 0">Write to us</h3>
+          <p class="small">hello@chainintelligence.example • Singapore</p>
+          <form onsubmit="event.preventDefault(); alert('Thank you — we will be in touch!')">
+            <div class="grid" style="margin-top:10px">
+              <input required placeholder="Your name" style="grid-column:span 6; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--ink)"/>
+              <input required type="email" placeholder="Work email" style="grid-column:span 6; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--ink)"/>
+              <input placeholder="Company" style="grid-column:span 6; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--ink)"/>
+              <input placeholder="Role" style="grid-column:span 6; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--ink)"/>
+              <textarea required placeholder="How can we help?" rows="4" style="grid-column:span 12; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); color:var(--ink);"></textarea>
+              <div style="grid-column:span 12; display:flex; gap:12px; align-items:center">
+                <button class="btn primary" type="submit">Send</button>
+                <label style="display:flex; gap:8px; align-items:center; color:var(--muted); font-size:13px"><input type="checkbox" checked /> I agree to be contacted</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card" style="grid-column:span 5">
+          <h3 style="margin:4px 0 8px 0">At a glance</h3>
+          <ul class="small" style="margin:0; padding-left:18px; line-height:1.8">
+            <li>Singapore‑based, enterprise‑focused</li>
+            <li>Privacy‑enhancing tech: HE • MPC • FL • TEE</li>
+            <li>Identity, analytics, and payment automation</li>
+            <li>Audit‑ready, policy‑aware smart contracts</li>
+          </ul>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <span class="badge">ISO‑style controls</span>
+            <span class="badge alt">Audit logs</span>
+            <span class="badge">Interoperability</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div class="small">© <span id="yr"></span> Chain Intelligence Pte. Ltd. All rights reserved.</div>
+      <div class="small">Made with privacy by design • Singapore</div>
+    </div>
+  </footer>
+
+  <script>
+    // Starfield background
+    const c=document.getElementById('stars');const x=c.getContext('2d');
+    const DPR=window.devicePixelRatio||1;let W,H,stars=[];const N=180;
+    function resize(){W=window.innerWidth;H=window.innerHeight;c.width=W*DPR;c.height=H*DPR;c.style.width=W+'px';c.style.height=H+'px';x.setTransform(DPR,0,0,DPR,0,0);} resize();
+    function init(){stars=[...Array(N)].map(()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3, s:Math.random()*0.8+0.2}))}
+    function loop(){x.clearRect(0,0,W,H); for(const s of stars){x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle=`rgba(255,255,255,${0.35+Math.sin(Date.now()*0.002*s.s)*0.25})`;x.fill()} requestAnimationFrame(loop)}
+    init(); loop(); window.addEventListener('resize', ()=>{resize(); init()});
+
+    // Dynamic grid glow
+    const grid=document.getElementById('grid'); for(let i=0;i<24;i++){const d=document.createElement('div');d.className='cell';const p=document.createElement('div');p.className='pulse'; d.appendChild(p); grid.appendChild(d);}
+    grid.addEventListener('pointermove', (e)=>{
+      const rect=grid.getBoundingClientRect(); const rx=(e.clientX-rect.left)/rect.width*100; const ry=(e.clientY-rect.top)/rect.height*100;
+      document.querySelectorAll('.cell .pulse').forEach(el=>{el.style.setProperty('--x', rx+'%'); el.style.setProperty('--y', ry+'%')});
+    });
+
+    // Footer year
+    document.getElementById('yr').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
